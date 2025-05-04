@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+      /* 基本选项 */
+      "target": "ES2020",        // 指定 ECMAScript 目标版本 (ES6/ES2015 或更高)
+      "module": "NodeNext",      // 指定模块代码生成: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'.
+      "outDir": "./dist",        // 将编译后的 .js 文件输出到 'dist' 目录
+      "rootDir": "./src",        // 指定包含 TypeScript 源文件的根目录
+  
+      /* 严格类型检查选项 */
+      "strict": true,            // 启用所有严格类型检查选项
+      "esModuleInterop": true,   // 允许从 CommonJS 模块进行默认导入，兼容性更好
+  
+      /* 附加检查 */
+      "skipLibCheck": true,      // 跳过声明文件的类型检查 (提高编译速度)
+      "forceConsistentCasingInFileNames": true // 不允许不一致的文件名大小写引用
+    },
+    "include": ["src/**/*"],     // 指定需要编译的文件/目录
+    "exclude": ["node_modules"]  // 指定不需要编译的目录
+  }

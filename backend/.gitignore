@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# Logs
+logs/
+*.log
+
+# Build artifacts
+dist/
+build/
+
+# Environment variables
+.env
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE specific files
+.idea/
+.vscode/settings.json

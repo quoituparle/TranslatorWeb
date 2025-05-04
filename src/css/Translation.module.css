@@ -1,0 +1,282 @@
+/* === Global Styles & Variables === */
+
+  
+  /* === Main Window === */
+  .main-window {
+    background-color: var(--white);
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 20px var(--shadow-medium);
+    max-width: 900px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* Space between main sections */
+    transition: all var(--transition-speed) ease;
+  }
+  
+  /* === Header === */
+  .main-window h1 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 0.5rem; /* Reduced margin */
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  
+  /* === Selection Controls Area === */
+  .selection-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 1.5rem; /* Space between selectors/buttons */
+    align-items: flex-end; /* Align items based on their bottom edge */
+    border-bottom: 1px solid var(--border-color); /* Separator line */
+    padding-bottom: 1.5rem;
+  }
+  
+  /* Style for the containers of LanguageSelector/ModelSelector if they exist */
+  /* Assuming LanguageSelector/ModelSelector render a label and select directly or within a simple div */
+  .selection-container > div { /* Target potential wrapper divs */
+    flex: 1 1 180px; /* Allow flexible growing/shrinking, base width */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* Space between label and select */
+  }
+  
+  .selection-container label {
+    font-size: 0.9em;
+    color: var(--secondary-color);
+    font-weight: 500;
+  }
+  
+  .selection-container select {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: calc(var(--border-radius) / 2);
+    background-color: var(--white);
+    font-size: 1em;
+    cursor: pointer;
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    appearance: none; /* Allows custom dropdown arrow if desired */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+    padding-right: 3rem; /* Make space for arrow */
+  }
+  
+  .selection-container select:hover {
+    border-color: var(--secondary-color);
+  }
+  
+  .selection-container select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+  }
+  
+  /* Specific button within the selection area */
+  .selection-container button {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--secondary-color);
+    color: var(--white);
+    border: none;
+    border-radius: calc(var(--border-radius) / 2);
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 500;
+    transition: background-color var(--transition-speed) ease, transform 0.1s ease;
+    height: fit-content; /* Align better with selects */
+    margin-left: auto; /* Push Polish button to the right if space allows */
+  }
+  
+  .selection-container button:hover {
+    background-color: #5a6268; /* Darker grey */
+  }
+  .selection-container button:active {
+      transform: scale(0.98);
+  }
+  
+  /* === Text Areas Section === */
+  .text-area {
+    display: flex;
+    gap: 2rem; /* Space between input and output */
+    width: 100%;
+  }
+  
+  .text-area > .relative {
+    flex: 1; /* Each textarea container takes equal space */
+    position: relative; /* For positioning the clear button */
+  }
+  
+  textarea.inputTextArea,
+  textarea.outputTextArea {
+    width: 100%;
+    min-height: 200px;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1em;
+    line-height: 1.5;
+    resize: vertical; /* Allow vertical resize only */
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+  }
+  
+  textarea.inputTextArea::placeholder,
+  textarea.outputTextArea::placeholder {
+    color: #adb5bd; /* Light grey placeholder */
+  }
+  
+  textarea.inputTextArea:focus,
+  textarea.outputTextArea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+  }
+  
+  textarea.outputTextArea {
+    background-color: var(--light-bg); /* Slightly different background for output */
+    cursor: text; /* Or 'default' if copying isn't primary */
+  }
+  
+  /* === Clear Input Button === */
+  .clearInputButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: var(--secondary-color);
+    font-size: 1.5rem; /* Adjust size as needed */
+    line-height: 1;
+    padding: 0.2rem 0.5rem;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: color var(--transition-speed) ease, background-color var(--transition-speed) ease;
+  }
+  
+  .clearInputButton:hover {
+    color: var(--text-color);
+    background-color: rgba(0, 0, 0, 0.08);
+  }
+  
+  /* Use a simple 'X' for the button content - consider using an SVG icon */
+  .clearInputButton::after {
+      content: '×'; /* Simple multiplication sign as 'X' */
+  }
+  
+  
+  /* === Main Translate Button === */
+  .handleButton {
+    display: block; /* Make it block to allow margin auto */
+    margin: 0 auto; /* Center the button */
+    padding: 0.8rem 2.5rem;
+    background: linear-gradient(45deg, var(--primary-color), #0056b3); /* Gradient background */
+    color: var(--white);
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--transition-speed) ease, transform 0.1s ease, box-shadow var(--transition-speed) ease;
+    box-shadow: 0 3px 8px var(--shadow-light);
+  }
+  
+  .handleButton:hover:not(:disabled) {
+    background: linear-gradient(45deg, var(--primary-color-dark), #004085); /* Darker gradient */
+    box-shadow: 0 5px 12px var(--shadow-medium);
+    transform: translateY(-2px); /* Slight lift effect */
+  }
+  
+  .handleButton:active:not(:disabled) {
+    transform: translateY(0px) scale(0.98); /* Press down effect */
+    box-shadow: 0 2px 5px var(--shadow-light);
+  }
+  
+  .handleButton:disabled {
+    background: var(--secondary-color);
+    opacity: 0.7;
+    cursor: wait; /* Indicate loading/waiting */
+  }
+  
+  /* Add a subtle pulsing animation for loading */
+  .handleButton:disabled {
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+  
+  @keyframes pulse {
+    0% {
+      opacity: 0.7;
+    }
+    50% {
+      opacity: 0.9;
+    }
+    100% {
+      opacity: 0.7;
+    }
+  }
+  
+  /* === Error Message === */
+  .error {
+    background-color: var(--error-bg);
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
+    border-left: 5px solid var(--error-color); /* Accent border */
+    padding: 1rem 1.5rem;
+    border-radius: calc(var(--border-radius) / 2);
+    margin-top: 0; /* Let the main gap handle spacing */
+    font-size: 0.95em;
+    animation: fadeIn 0.5s ease; /* Fade in effect */
+  }
+  
+  .error strong {
+    font-weight: 600;
+  }
+  
+  @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* === Responsive Adjustments === */
+  @media (max-width: 768px) {
+    body {
+      padding: 1rem;
+    }
+  
+    .main-window {
+      padding: 1.5rem;
+      gap: 1.5rem;
+    }
+  
+    .selection-container {
+      gap: 1rem;
+      flex-direction: column; /* Stack selectors vertically */
+      align-items: stretch; /* Make selectors full width */
+      padding-bottom: 1rem;
+    }
+  
+    .selection-container > div {
+       flex-basis: auto; /* Reset flex basis */
+    }
+  
+    .selection-container button {
+        margin-left: 0; /* Remove auto margin */
+        width: 100%; /* Make Polish button full width */
+    }
+  
+    .text-area {
+      flex-direction: column; /* Stack text areas vertically */
+      gap: 1.5rem;
+    }
+  
+    textarea.inputTextArea,
+    textarea.outputTextArea {
+      min-height: 150px; /* Slightly smaller height on mobile */
+    }
+  
+    .handleButton {
+        width: 100%; /* Full width button */
+    }
+  }

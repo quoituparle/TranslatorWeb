@@ -1,6 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 
-const apiKey = ""
+const apiKey = "" // enter your gemini api, you can find it in google ai studio
 
 const ai = new GoogleGenAI({ apiKey: apiKey });
 
@@ -23,7 +23,7 @@ export async function TranslationView({ // function to translate text
   text,
   sourceLanguage,
   targetLanguage,
-  model = 'gemini-2.0-flash',
+  model = 'gemini-2.5-flash',
 }: TranslationParames): Promise<string> {
   try {
     const response = await ai.models.generateContent({

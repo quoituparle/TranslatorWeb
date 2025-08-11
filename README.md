@@ -29,7 +29,7 @@ Beyond the functionality, this project showcases a modern approach to web applic
 
 1.  **Clone the repository:**
     ```bash
-    git clone [your-repo-link]
+    git clone [https://github.com/quoituparle/TranslatorWeb.git]
     ```
 2.  **Setup Backend (Node.js):**
     ```bash
